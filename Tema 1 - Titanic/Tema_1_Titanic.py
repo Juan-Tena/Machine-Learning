@@ -1,6 +1,13 @@
 #Carga de datos a traves de la función read_csv
 
 import pandas as pd
+import os
+
+mainPath="C:/Users/juan_/Documents/GitHub/Machine-Learning/"
+filepathTitanic="Tema 1 - Titanic/titanic3.csv"
+
+fullpathTitanic=mainPath+filepathTitanic
+fullpathTitanic_os=os.path.join(mainPath, filepathTitanic)
 
 data = pd.read_csv("C:/Users/juan_/Documents/GitHub/Machine-Learning/Tema 1 - Titanic/titanic3.csv")#Observar como la barra está al revés
 #print(data.head())
@@ -26,7 +33,15 @@ data1= pd.read_csv(filepath_or_buffer="C:/Users/juan_/Documents/GitHub/Machine-L
 # index_col, permite establecer la columna índice. Puede ser un número concreto o None. En este caso, se establece un contador numérico
 # skip_blank_lines, permite excluir las líneas en blanco que contenga el fichero, en lugar de que aparezcan como none
 # na_filter, permite detectar los valores que faltan dentro del dataset. Por defecto su valor es True
+print("============ 1 ===============")
 
-
-print("===========================")
 print(data1)
+print("============ 2 ===============")
+
+data2= pd.read_csv(fullpathTitanic)
+print(data2)
+print("============ 3 ===============")
+
+data3= pd.read_csv(fullpathTitanic_os)
+print(data2)
+print("============ 4 ===============")
