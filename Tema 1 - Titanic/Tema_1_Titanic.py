@@ -3,16 +3,19 @@
 import pandas as pd
 import os
 
+#Establecemos dos direcciones y las unimos
 mainPath="C:/Users/juan_/Documents/GitHub/Machine-Learning/"
 filepathTitanic="Tema 1 - Titanic/titanic3.csv"
-
 fullpathTitanic=mainPath+filepathTitanic
+#Utilizamos el paquete os y unimos las dos direcciones. Esta opción es más eficiente.
 fullpathTitanic_os=os.path.join(mainPath, filepathTitanic)
 
+#Escribimos la dirección completa sin opciones
 data = pd.read_csv("C:/Users/juan_/Documents/GitHub/Machine-Learning/Tema 1 - Titanic/titanic3.csv")#Observar como la barra está al revés
 #print(data.head())
 print(data)
 
+#Escribimos la dirección completa con opciones
 data1= pd.read_csv(filepath_or_buffer="C:/Users/juan_/Documents/GitHub/Machine-Learning/Tema 1 - Titanic/titanic3.csv", sep=",",
 	dtype=None, header=0, names=None, skiprows=None, index_col=None, skip_blank_lines=True, na_filter=False)
 
@@ -43,5 +46,26 @@ print(data2)
 print("============ 3 ===============")
 
 data3= pd.read_csv(fullpathTitanic_os)
-print(data2)
+print(data3)
 print("============ 4 ===============")
+
+data4= pd.read_csv(mainPath+"Tema 1 - Titanic/Customer Churn Model.txt")
+print(data4)
+print("============ 5 ===============")
+print(data4.columns.values)
+
+print("============ 6 ===============")
+
+# Vamos a cambiar el nombre de las columnas
+data_cols=pd.read_csv(mainPath+"Tema 1 - Titanic/Customer Churn Columns.csv")
+print(data_cols)
+data_col_list=data_cols["Column_Names"].tolist()
+print(data_col_list)
+print("============ 7 ===============")
+
+data5= pd.read_csv(mainPath+"Tema 1 - Titanic/Customer Churn Model.txt", header=None, names=data_col_list)
+print(data5)
+
+print("============ 8 ===============")
+
+print(data5.columns.values)
