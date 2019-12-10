@@ -69,3 +69,41 @@ print(data5)
 print("============ 8 ===============")
 
 print(data5.columns.values)
+
+print("============ 8 ===============")
+
+
+
+
+
+
+
+
+print("===Carga de datos a través de la función open===")
+
+data6=open(mainPath+"Tema 1 - Titanic/Customer Churn Model.txt", "r")
+#r, solo lectura / rw, lectura y escritura / w, escritura
+cols = data6.readline().strip().split(",")
+# strip -> se utiliza para eliminar los espacios en blanco que sobran tanto al inicio como al final de la línea
+# split -> divide esa línea de texto por un pequeño fragmento, por un delimitador
+print(cols)
+n_cols=len(cols)
+print("============ 9 ===============")
+counter=0
+main_Dict={}
+for col in cols:
+	main_Dict[col]=[]
+
+print(main_Dict)
+print("============ 10 ===============")
+for line in data6:
+	values=line.strip().split(",") #divide cada linea en columnas en base al separador, a la coma ","
+	for i in range(len(cols)): #itera sobre las columnas de cada linea
+		main_Dict[cols[i]].append(values[i])
+	counter+=1
+print("El data set tiene %d fileas y %d columnas" % (counter, n_cols))
+
+print("============ 11 ===============")
+
+df1=pd.DataFrame(main_Dict)
+print(df1.head())
