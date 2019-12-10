@@ -70,7 +70,7 @@ print("============ 8 ===============")
 
 print(data5.columns.values)
 
-print("============ 8 ===============")
+print("============ 9 ===============")
 
 
 
@@ -88,22 +88,36 @@ cols = data6.readline().strip().split(",")
 # split -> divide esa línea de texto por un pequeño fragmento, por un delimitador
 print(cols)
 n_cols=len(cols)
-print("============ 9 ===============")
+print("============ 10 ===============")
 counter=0
 main_Dict={}
 for col in cols:
 	main_Dict[col]=[]
 
 print(main_Dict)
-print("============ 10 ===============")
+print("============ 11 ===============")
 for line in data6:
 	values=line.strip().split(",") #divide cada linea en columnas en base al separador, a la coma ","
 	for i in range(len(cols)): #itera sobre las columnas de cada linea
 		main_Dict[cols[i]].append(values[i])
 	counter+=1
-print("El data set tiene %d fileas y %d columnas" % (counter, n_cols))
+print("El data set tiene %d filas y %d columnas" % (counter, n_cols))
 
-print("============ 11 ===============")
+print("============ 12 ===============")
 
 df1=pd.DataFrame(main_Dict)
 print(df1.head())
+
+print("============ 13 ===============")
+#Lectura y escritura de ficheros
+infile=mainPath+"Tema 1 - Titanic/Customer Churn Model.txt"
+outfile=mainPath+"Tema 1 - Titanic/Tab Customer Churn Model.txt"
+with open(infile,"r") as infile1:
+	with open(outfile,"w") as outfile1:
+		for line in infile1:
+			fields=line.strip().split(",")
+			outfile1.write("\t".join(fields))
+			outfile1.write("\n")
+print("============ 14 ===============")
+df4=pd.read_csv(outfile,sep="\t")
+print(df4)
