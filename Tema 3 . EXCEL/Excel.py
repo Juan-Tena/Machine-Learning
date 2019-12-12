@@ -15,7 +15,7 @@ print("===================================")
 print(titanic_xlsx.head())
 print("===================================")
 
-EONIA_url="https://www.emmi-benchmarks.eu/assets/modules/rateisblue/file_processing/publication/processed/hist_EONIA_2019.xls"
-EONIA_xls=pd.read_excel(EONIA_url, "EONIA")
-print(EONIA_xls)
-print("===================================")
+#Permiten convertir un dataframe en otro tipo de fichero
+titanic_xls.to_csv(mainPath + "Tema 3 . EXCEL/titanic_csv.csv")
+titanic_xls.to_excel(mainPath + "Tema 3 . EXCEL/titanic3_1.xlsx")
+titanic_xls.to_json(mainPath + "Tema 3 . EXCEL/titanic3_1.json")
