@@ -30,3 +30,23 @@ print(data.describe())
 print("------------------------------------------")
 #Tipo de datos
 print(data.dtypes)
+
+print("---------VALORES PERDIDOS---------------------------------")
+#Metodo para comprobar si faltan valores
+print(pd.isnull(data["body"]))#Nos muestra verdadero si faltan valores
+print(pd.notnull(data["body"]))#Muestra  verdadero si hay valor
+
+#Si quiero que me devuelva un array
+print(pd.isnull(data["body"]).values)
+print("------------------------------------------")
+#la funcion ravel() permite construir u unico array de datos, a los que les puedo aplicar una función como sum()
+print("Número de registros sin valor en la columna de 'body':",pd.isnull(data["body"]).values.ravel().sum()) #Cuenta el numero de valores que son isnull
+print("Número de registros con valor en la columna de 'body':",pd.notnull(data["body"]).values.ravel().sum())
+print("------------------------------------------")
+print("Por tanto, sabemos que faltan valores")
+print("Los valores que faltan en un dataset pueden ser debidos a dos razones","\n","   - Primer motivo: la propia extracción de los datos"
+	,"\n", "   - Segundo motivo: la recolección de los datos")
+
+print("------------------------------------------")
+print("¿Que hacemos cuando faltan valores?¿Cómo los tratamos?")
+
