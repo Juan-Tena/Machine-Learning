@@ -31,6 +31,7 @@ print("------------------------------------------")
 #Tipo de datos
 print(data.dtypes)
 
+print("----------------------------------------------------------")
 print("---------VALORES PERDIDOS---------------------------------")
 #Metodo para comprobar si faltan valores
 print(pd.isnull(data["body"]))#Nos muestra verdadero si faltan valores
@@ -48,5 +49,46 @@ print("Los valores que faltan en un dataset pueden ser debidos a dos razones","\
 	,"\n", "   - Segundo motivo: la recolección de los datos")
 
 print("------------------------------------------")
-print("¿Que hacemos cuando faltan valores?¿Cómo los tratamos?")
+print("¿Que hacemos cuando faltan valores?¿Cómo los tratamos?","\n")
+print("La primera opcion es el borrado de los valores que faltan, bien la columna, bien la fila", "\n")
+print("Borramos la fila")
+data.dropna(axis=0, how="all") 
+# axis=0 borraría toda la fila, y axis=1 borraría toda la columna
+# con how le indicamos las filas que tiene que borrar
+#   - all, una fila es borrada, si todas sus columnas contienen valores Na
+#   - any, una fila es borrada, si al menos una columna contiene un valor Na
+print("----------data------------------------")
+print(data.dropna(axis=0, how="all"))
+print("----------data2-----------------------")
+data2=data
+print(data2.dropna(axis=0, how="any"))
 
+print("\n\nLa segunda opcion es inferir los datos.\n",
+	"El método del Cómputo de los valores faltantes: consite en añadir o reeplazar los valores faltantes por otros.\n",
+	"La elección del método dependerá del contexto en el que se encuentren los datos\n")
+
+data3=data
+print("Reemplaza los valores que faltan por un cero")
+print(data3.fillna(0))
+print("---------------------------------")
+print("Reemplaza los valores que faltan por una palabra")
+print(data3.fillna("Desconocido"))
+print("---------------------------------")
+print("Otra opcion sería cambiar en función de la columna")
+data5=data
+data5["body"]=data5["body"].fillna(0)#Sobreescribimos la variable
+data5["home.dest"]=data5["home.dest"].fillna("Desconocido")
+print(data5.head(50))
+print("\nOtra opcion sería cambiar el valor que falta por el promedio de la columna.\nSe utiliza en combinación con el método fillna")
+
+print(pd.isnull(data5["age"]).values.ravel().sum())
+data5["age"].fillna(data5["age"].mean())
+print(data5.head(50))
+print("---------------------------------\n")
+print(data5["age"])
+print("\nOtra opcion sería cambiar el valor que falta por el inmediato posterior backfill")
+print(data5["age"][1291])
+print(data5["age"].fillna(method="backfill"))
+print("---------------------------------")
+print("\nOtra opcion sería cambiar el valor que falta por el inmediato anterior ffill")
+print(data5["age"].fillna(method="ffill"))
