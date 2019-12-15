@@ -92,3 +92,36 @@ print(data5["age"].fillna(method="backfill"))
 print("---------------------------------")
 print("\nOtra opcion sería cambiar el valor que falta por el inmediato anterior ffill")
 print(data5["age"].fillna(method="ffill"))
+print("---------------------------------")
+
+
+print("\n\n\n\nVariables dummy\n")
+print(data["sex"])
+print("\nLa columna sex es una variable categórica que podemos transformarla en dos columnas: dumificación.")
+dummy_sex=pd.get_dummies(data["sex"], prefix="sex")
+print("Mostramos las dos columnas que hemos creado.")
+print(dummy_sex)
+
+print("\nAhora lo que se suele hacer es elimnar la columna original, para dejar paso a las dos nuevas columnas.\n")
+column_name=data.columns.values.tolist()
+print("Mostramos el nombre de las columnas originales.")
+print(column_name)
+
+print("\nNos cargamos la columna sex.")
+data=data.drop(["sex"], axis=1)
+column_name=data.columns.values.tolist()
+print("\nMostramos el nombre de las columnas, ahora sin sex.")
+print(column_name)
+print("\nAhora añadimos las variables dummy al data set.")
+data=pd.concat([data, dummy_sex], axis=1)#axis=1 significa que lo hacemos por columnas	
+print(data)
+
+print("\n\n\nPodemos crear una función que elimine columnas y las convierta en dummies")
+
+def createDummies(df, var_name):
+	dummy=pd.get_dummies(df[var_name], prefix=var_name)
+	df=df.drop(var_name, axis=1)
+	df=pd.concat([df, dummy], axis=1)
+	return print(df)
+
+createDummies(data3, "sex")
